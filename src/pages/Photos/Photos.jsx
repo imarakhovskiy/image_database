@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { SectionContent } from '../../SectionContent'
-import { imagesSelector } from '../../../modules/Selectors'
+import { SectionContent } from '../../components/SectionContent'
+import { imagesSelector } from '../../modules/Selectors'
 import { PhotosGrid } from './PhotosGrid'
 import { FiltersBlock } from './FiltersBlock'
 

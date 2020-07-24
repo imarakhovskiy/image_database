@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { imagesSelector } from '../../../../modules/Selectors'
+import { imagesSelector } from '../../../modules/Selectors'
 import { FiltersBlockWrapper, StyledFilterButton } from './styled'
 import { useEffect } from 'react'
 

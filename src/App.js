@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { Sidebar } from './components/Sidebar'
 import { fetchImages } from './modules/Actions'
 import { SECTIONS_NAMES } from './constants'
-import { Photos, Events, Files, Sharing, GetStarted, Links } from './components/pages'
+import { Photos, Events, Files, Sharing, GetStarted, Links } from './pages'
 import { LayoutWrapper } from './styled'
 
 const SECTIONS_COMPONENTS = {
