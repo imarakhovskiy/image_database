@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { Sidebar } from './components/Sidebar'
+import { fetchImages } from './modules/Actions'
+import { SECTIONS_NAMES } from './constants'
+import { Photos, Events, Files, Sharing, GetStarted, Links } from './components/pages'
+import { LayoutWrapper } from './styled'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const SECTIONS_COMPONENTS = {
+  [SECTIONS_NAMES.FILES]: Files,
+  [SECTIONS_NAMES.PHOTOS]: Photos,
+  [SECTIONS_NAMES.SHARING]: Sharing,
+  [SECTIONS_NAMES.LINKS]: Links,
+  [SECTIONS_NAMES.EVENTS]: Events,
+  [SECTIONS_NAMES.GET_STARTED]: GetStarted,
 }
 
-export default App;
+function App() {
+  const dispatch = useDispatch()
+  const [activeSection, setActiveSection] = useState(SECTIONS_NAMES.PHOTOS)
+
+  useEffect(() => {
+    fetchImages(dispatch)
+  }, [dispatch])
+
+  const SectionContentComponent = SECTIONS_COMPONENTS[activeSection]
+
+  return (
+    <LayoutWrapper>
+      <Sidebar activeSection={activeSection} setActiveSection={setActiveSection} />
+      <SectionContentComponent />
+    </LayoutWrapper>
+  )
+}
+
+export default App
