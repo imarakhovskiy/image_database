@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { Sidebar } from './components/Sidebar'
-import { fetchImages } from './modules/Actions'
-import { SECTIONS_NAMES } from './constants'
-import { Photos, Events, Files, Sharing, GetStarted, Links } from './pages'
+import { Sidebar, SectionContent } from 'components'
+import { fetchImages } from 'modules/Actions'
+import { SECTIONS_NAMES, SECTIONS } from 'commonConstants'
+import { Photos, Events, Files, Sharing, GetStarted, Links } from 'pages'
 import { LayoutWrapper } from './styled'
 
 const SECTIONS_COMPONENTS = {
@@ -17,6 +17,7 @@ const SECTIONS_COMPONENTS = {
 
 function App() {
   const dispatch = useDispatch()
+  const [isSidebarOpened, setIsSidebarOpened] = useState(true)
   const [activeSection, setActiveSection] = useState(SECTIONS_NAMES.PHOTOS)
 
   useEffect(() => {
@@ -27,8 +28,18 @@ function App() {
 
   return (
     <LayoutWrapper>
-      <Sidebar activeSection={activeSection} setActiveSection={setActiveSection} />
-      <SectionContentComponent />
+      <Sidebar
+        activeSection={activeSection}
+        setActiveSection={setActiveSection}
+        isOpened={isSidebarOpened}
+        setOpened={setIsSidebarOpened}
+      />
+      <SectionContent
+        title={SECTIONS[activeSection].title}
+        isSidebarOpened={isSidebarOpened}
+      >
+        <SectionContentComponent isSidebarOpened={isSidebarOpened} />
+      </SectionContent>
     </LayoutWrapper>
   )
 }

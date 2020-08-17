@@ -1,7 +1,11 @@
 import styled from 'styled-components'
+import { SIDEBAR_ANIMATION_PERIOD, SIDEBAR_ANIMATION_TYPE } from '../Sidebar/styled'
 
 export const SectionContentWrapper = styled.div`
-  padding: 7rem 2rem 3rem 24.2rem;
+  padding: ${({ isSidebarOpened }) =>
+    `7rem 2rem 3rem ${isSidebarOpened ? '24.2rem' : '6.4rem'}`};
+  width: 100%;
+  transition: padding-left ${SIDEBAR_ANIMATION_PERIOD} ${SIDEBAR_ANIMATION_TYPE};
 `
 
 export const Title = styled.h2`
